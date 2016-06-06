@@ -61,6 +61,18 @@ variable "region" {
     description = "The region of AWS, for AMI lookups."
 }
 
+variable "vpc_id" {
+    description = "VPC Id to be set"
+}
+
+variable "consul_subnets_id" {
+    description = "Subnet Id to be set"
+}
+
+variable "consul_availability_zone" {
+    description = "AZ to be set"
+}
+
 variable "servers" {
     default = "3"
     description = "The number of Consul servers to launch."
