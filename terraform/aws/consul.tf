@@ -3,7 +3,10 @@ resource "aws_instance" "server" {
     instance_type = "${var.instance_type}"
     key_name = "${var.key_name}"
     count = "${var.servers}"
-    security_groups = ["${aws_security_group.consul.name}"]
+    vpc_security_group_ids = ["${aws_security_group.consul.id}"]
+    availability_zone = "${ element(split(",", var.aws_az_list), count.index) }"
+    subnet_id = "${ element(split(",", var.aws_subnet_list), count.index) }"
+    monitoring = true
 
     connection {
         user = "${lookup(var.user, var.platform)}"
@@ -71,4 +74,6 @@ resource "aws_security_group" "consul" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
+
+    vpc_id = "${var.aws_vpc_id}"
 }

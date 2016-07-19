@@ -1,5 +1,5 @@
 variable "platform" {
-    default = "ubuntu"
+    default = "centos7"
     description = "The OS Platform"
 }
 
@@ -80,4 +80,17 @@ variable "instance_type" {
 variable "tagName" {
     default = "consul"
     description = "Name tag for the servers"
+}
+
+variable "aws_vpc_id" {
+    description = "VPC Id to be set"
+}
+
+variable "aws_subnet_list" {
+   description = "Subnet Id to be set"
+}
+
+variable "aws_az_list" {
+    default = "eu-central-1a,eu-central-1b"
+    description = "AZ to be set"
 }
